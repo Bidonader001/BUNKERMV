@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bunker</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#ffffff;
+  --muted:#9ca3af;
+  --bg:#000000;
+  --card:#111111;
+  --glass:rgba(255,255,255,0.05);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
+  background:var(--bg);
+  color:#ffffff;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+#squaresBackground{
+  position:fixed;top:0;left:0;
+  width:100%;height:100%;
+  z-index:0;background:black;
+}
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:28px;
+  position:relative;
+  z-index:1;
+}
+/* header */
+header{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+.logo img{height:60px;border-radius:10px;width:auto}
+.header-insta{display:flex;align-items:center}
+.insta-link-header{
+  font-family:'Press Start 2P',cursive;
+  font-size:11px;
+  color:#fff;
+  text-decoration:none;
+  display:flex;align-items:center;gap:12px;
+  letter-spacing:1px;
+  text-shadow:0 0 5px #fff,0 0 10px #ea73e0;
+  transition:0.3s ease;
+  padding:8px 16px;
+  border-radius:50px;
+  background:rgba(234,115,224,0.1);
+  border:1px solid rgba(234,115,224,0.3);
+}
+.header-insta-logo{height:36px;width:36px;border-radius:8px;object-fit:cover}
+.insta-link-header:hover{
+  color:#ea73e0;
+  text-shadow:0 0 10px #fff,0 0 20px #ea73e0;
+  transform:scale(1.05);
+  background:rgba(234,115,224,0.2);
+  border-color:rgba(234,115,224,0.6);
+  box-shadow:0 0 15px rgba(234,115,224,0.4);
+}
+/* hero */
+.hero{margin-top:40px}
+.hero-card{
+  max-width:700px;
+  padding:36px;
+  border-radius:20px;
+  background:rgba(17,17,17,0.75);
+  backdrop-filter:blur(7px);
+  border:1px solid rgba(234,115,224,0.3);
+  animation:heroGlow 3s ease-in-out infinite;
+}
+@keyframes heroGlow{
+  0%,100%{box-shadow:0 6px 30px rgba(0,0,0,0.9),0 0 20px rgba(234,115,224,0.2);border-color:rgba(234,115,224,0.3)}
+  50%{box-shadow:0 6px 30px rgba(0,0,0,0.9),0 0 40px rgba(234,115,224,0.4);border-color:rgba(234,115,224,0.6)}
+}
+.title-row{display:flex;align-items:center;gap:20px;flex-wrap:nowrap}
+.title-row h1{margin:0;white-space:nowrap}
+.bunker-title{
+  font-family:'Press Start 2P',cursive;
+  font-size:42px;
+  animation:titlePulse 2s ease-in-out infinite;
+}
+@keyframes titlePulse{
+  0%,100%{text-shadow:0 0 1px rgba(255,255,255,0.2)}
+  50%{text-shadow:0 0 20px rgba(234,115,224,0.6)}
+}
+.arabic{font-family:'Scheherazade New',serif;direction:rtl;font-size:28px}
+.lead{color:var(--muted);font-size:17px;margin-top:18px;line-height:1.6}
+.contact-info{margin-top:10px;font-size:14px;color:#9ca3af;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.contact-info a{color:#ffffff;text-decoration:none}
+.contact-info a:hover{text-decoration:underline}
+.contact-info span{opacity:0.5}
+.whatsapp-link{display:flex;align-items:center;gap:5px;text-decoration:none;color:#ffffff}
+.wa-icon{width:18px;height:18px;transition:transform 0.3s ease}
+.whatsapp-link:hover{color:#25D366!important;text-decoration:none!important}
+.whatsapp-link:hover .wa-icon{transform:scale(1.2);filter:drop-shadow(0 0 8px #25D366)}
+/* offer */
+.offer-highlight{
+  margin-top:20px;
+  font-family:'Press Start 2P',cursive;
+  font-size:13px;line-height:1.6;
+  color:#ea73e0;text-align:center;
+  text-shadow:0 0 5px #ea73e0,0 0 10px #ea73e0,0 0 20px rgba(191,46,181,0.7);
+  animation:pulseText 2s infinite;
+}
+@keyframes pulseText{
+  0%,100%{text-shadow:0 0 5px #ea73e0,0 0 10px #ea73e0}
+  50%{text-shadow:0 0 15px #ea73e0,0 0 30px #ea73e0}
+}
+.offer-highlight span{
+  display:block;margin-top:8px;font-size:11px;
+  color:#ffffff;text-shadow:0 0 8px rgba(255,255,255,0.8);
+  animation:blink 1s infinite;
+}
+@keyframes blink{0%{opacity:1}50%{opacity:0}100%{opacity:1}}
+/* section titles */
+.pixel-glow{
+  font-family:'Press Start 2P',cursive;
+  font-size:20px;margin-top:40px;
+}
+.pixel-glow.new-games{
+  color:#ffffff;
+  text-shadow:0 0 10px #ea73e0,0 0 20px #ea73e0,0 0 30px rgba(234,115,224,0.5);
+  animation:flashNewGames 1.5s infinite;
+  text-align:center;letter-spacing:3px;font-size:26px;
+  margin:60px auto 40px;
+}
+@keyframes flashNewGames{
+  0%,100%{color:#ffffff;text-shadow:0 0 10px #ea73e0,0 0 20px #ea73e0}
+  50%{color:#ea73e0;text-shadow:0 0 20px #ea73e0,0 0 40px #ea73e0}
+}
+/* products grid */
+.products{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+/* card */
+.card{
+  padding:16px;
+  border-radius:14px;
+  background:rgba(17,17,17,0.85);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(7px);
+  transition:0.3s;
+  position:relative;
+  cursor:pointer;
+}
+.card:hover{
+  transform:translateY(-5px) scale(1.02);
+  border-color:rgba(234,115,224,0.4);
+  box-shadow:0 8px 30px rgba(234,115,224,0.15);
+}
+.card img{width:100%;height:180px;object-fit:cover;border-radius:10px}
+.img-slider{
+  display:flex;overflow-x:auto;gap:8px;
+  scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;cursor:grab;
+}
+.img-slider:active{cursor:grabbing}
+.img-slider::-webkit-scrollbar{display:none}
+.img-slider img{flex:0 0 100%;height:180px;object-fit:cover;border-radius:10px;scroll-snap-align:center}
+.card h3{text-align:center;margin:10px 0;font-size:15px;font-weight:700}
+.tags{color:var(--muted);font-size:13px;text-align:center;margin-bottom:6px}
+.price{font-weight:700;text-align:center;font-size:13px;line-height:1.6;color:#ffffff}
+/* stickers */
+.sticker{
+  position:absolute;top:10px;left:10px;
+  background:red;color:white;font-weight:bold;
+  padding:5px 10px;border-radius:50px;font-size:14px;z-index:10;
+}
+.new-games-sticker{
+  position:absolute;top:12px;left:12px;
+  background:linear-gradient(135deg,#ea73e0,#ff006e);
+  color:white;font-weight:900;padding:6px 12px;border-radius:50px;
+  font-size:10px;z-index:10;
+  box-shadow:0 0 15px rgba(234,115,224,0.8);
+  animation:pulse-sticker-new 1.5s infinite;
+  letter-spacing:1px;font-family:'Press Start 2P',cursive;
+}
+@keyframes pulse-sticker-new{
+  0%,100%{box-shadow:0 0 15px rgba(234,115,224,0.8);transform:scale(1)}
+  50%{box-shadow:0 0 25px rgba(234,115,224,1);transform:scale(1.05)}
+}
+/* footer */
+footer{margin-top:36px;padding:24px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,0.1)}
+/* responsive */
+@media(max-width:900px){
+  .products{grid-template-columns:1fr}
+  .hero-card{width:100%}
+  .title-row{flex-wrap:wrap}
+  .bunker-title{font-size:28px}
+}
+</style>
+</head>
+<body>
+
+<canvas id="squaresBackground"></canvas>
+
+<div class="container">
+
+<header>
+  <div class="logo"><img src="logo.jpg" alt="Bunker Logo"></div>
+  <div class="header-insta">
+    <a href="https://www.instagram.com/notabunker/" target="_blank" class="insta-link-header">
+      <img src="logo.jpg" class="header-insta-logo" alt="Bunker">
+      <span>FOLLOW US ON INSTAGRAM</span>
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-card">
+  <div class="title-row">
+    <h1 class="bunker-title">BUNKER</h1>
+    <h1 class="arabic">فكك من الروتين</h1>
+  </div>
+  <div class="contact-info">
+    📍 <a href="https://maps.app.goo.gl/RXGyh2qCuVod6hyMA" target="_blank">BUNKER ,MV RAS EL HEKMA</a>
+    <span>•</span>
+    📞 <a href="tel:01055456557">01055456557</a>
+    <span>•</span>
+    <a href="https://wa.me/201055456557" target="_blank" class="whatsapp-link">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="wa-icon" alt="WhatsApp">
+      WHATSAPP
+    </a>
+  </div>
+  <p class="lead">Where competition meets adrenaline. From exclusive arcade machines to high-energy bowling lanes, Bunker delivers a one-of-a-kind experience.</p>
+</div>
+</section>
+
+<div class="offer-highlight">
+  BUY THE CARD FOR 50 EGP &amp; RECHARGE AS YOU LIKE
+  <br>
+  <span>Charge 1000+ EGP → Get 200 EGP FREE</span>
+</div>
+
+<!-- NEW GAMES -->
+
+
+<!-- CARD GAMES -->
+<h2 class="pixel-glow">Card Included Games</h2>
+<section class="products">
+
+<div class="card">
+  <div class="img-slider">
+    <img src="BOXING.jpeg" alt="Boxing">
+  </div>
+  <h3>BOXING</h3>
+  <div class="tags">Punch hard and test your power score</div>
+  <div class="price">80 EGP / 3 Punches</div>
+</div>
+
+<div class="card">
+  <img src="DARTS.jpeg" alt="Darts">
+  <h3>DARTS</h3>
+  <div class="tags">AIM FOR THE BULLSEYE</div>
+  <div class="price">150 EGP /PERSON</div>
+</div>
+
+<div class="card">
+  <div class="img-slider">
+    <img src="BASKETBALL.jpeg" alt="Basketball">
+  </div>
+  <h3>BASKETBALL</h3>
+  <div class="tags">Score as many hoops as possible</div>
+  <div class="price">100 EGP / Game</div>
+</div>
+
+<div class="card">
+  <img src="WHITE_HOCKEY.jpeg" alt="White Hockey">
+  <h3>WHITE HOCKEY</h3>
+  <div class="tags">Fast match, score more goals</div>
+  <div class="price">80 EGP / Game</div>
+</div>
+
+<div class="card">
+  <div class="img-slider">
+    <img src="BLACK_HOCKEY.jpeg" alt="Black Hockey">
+   
+  </div>
+  <h3>BLACK HOCKEY</h3>
+  <div class="tags">Fast-paced table game, score goals against your opponent</div>
+  <div class="price">120 EGP / Game</div>
+</div>
+
+<div class="card">
+  <div class="img-slider">
+    <img src="SLAP.jpeg" alt="Laser Fun Slap">
+   
+  </div>
+  <h3>LASER (FUN SLAP)</h3>
+  <div class="tags">Press with speed to get what you need</div>
+  <div class="price">100 EGP / Game</div>
+</div>
+
+<div class="card">
+  <div class="img-slider">
+    <img src="ARCADE.jpeg" alt="Arcade Retro">
+    
+  </div>
+  <h3>ARCADE</h3>
+  <div class="tags">Classic arcade games from the 70s &amp; 80s</div>
+  <div class="price">80 EGP / Game</div>
+</div>
+
+<div class="card">
+  <div class="img-slider">
+    <img src="CATCHIT.jpeg" alt="Catch-It">
+   
+  </div>
+  <h3>CATCH IT</h3>
+  <div class="tags">React quickly and catch the moving lights</div>
+  <div class="price">100 EGP / Game</div>
+</div>
+
+<div class="card">
+  <img src="BILLIARD.jpeg" alt="Billiards">
+  <h3>BILLIARDS</h3>
+  <div class="tags">FOCUS, AIM, AND CLEAR THE TABLE</div>
+  <div class="price">800   EGP / 1HR</div>
+</div>
+
+<div class="card">
+  <img src="pingpong.jpeg" alt="Ping Pong">
+  <h3>PING PONG</h3>
+  <div class="tags">YOUR BOARD YOUR GAME</div>
+  <div class="price">600 EGP / 1HR</div>
+</div>
+
+</section>
+
+<!-- NON CARD GAMES -->
+
+
+<footer>
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+    <div style="font-family:'Press Start 2P',cursive;font-size:14px;color:white">BUNKER</div>
+    <div style="color:var(--muted);font-size:14px">© Powered by  · CODAI_EG</div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+const canvas = document.getElementById("squaresBackground");
+const ctx = canvas.getContext("2d");
+let w, h, squares = [];
+const size = 50;
+const colors = ["#ff4b5c","#ffd166","#06d6a0","#118ab2","#9b5de5"];
+function resize(){
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+  squares = [];
+  for(let y=0;y<h;y+=size)
+    for(let x=0;x<w;x+=size)
+      squares.push({x,y,color:colors[Math.floor(Math.random()*colors.length)],opacity:Math.random()*.5+.1});
+}
+function draw(mx,my){
+  ctx.clearRect(0,0,w,h);
+  for(let s of squares){
+    const d = Math.hypot(mx-s.x, my-s.y);
+    ctx.fillStyle = s.color;
+    ctx.globalAlpha = s.opacity * Math.max(.15,1-d/300);
+    ctx.fillRect(s.x,s.y,size-2,size-2);
+  }
+  ctx.globalAlpha=1;
+}
+let mouse={x:0,y:0};
+window.addEventListener("mousemove",e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+function animate(){draw(mouse.x,mouse.y);requestAnimationFrame(animate)}
+window.addEventListener("resize",resize);
+resize();animate();
+</script>
+
+</body>
+</html>
